@@ -16,18 +16,31 @@ public class MainActivity extends Activity {
 		setContentView(R.layout.main_menu);
 	
 		//ボタンの特定
-		  Button registButton=(Button)findViewById(R.id.checkFriends_button);
+		  Button playGameButton=(Button)findViewById(R.id.playGame_button);
+		  Button mapButton=(Button)findViewById(R.id.map_button);
 		  
 		  //登録メニューへボタンが押された場合の処理
-		  registButton.setOnClickListener(new View.OnClickListener() {
+		  playGameButton.setOnClickListener(new View.OnClickListener() {
 			  @Override
 			  public void onClick(View v) {
 					// インテントのインスタンス生成
-					Intent intentRegistMenu = new Intent(MainActivity.this, CheckFriendsActivity.class);
+					Intent intentGameMenu = new Intent(MainActivity.this, CheckFriendsActivity.class);
 					// 登録メニューのアクティビティ起動
-					startActivity(intentRegistMenu);
+					startActivity(intentGameMenu);
 			  }
 		  });
+		  
+		  //登録メニューへボタンが押された場合の処理
+		  mapButton.setOnClickListener(new View.OnClickListener() {
+			  @Override
+			  public void onClick(View v) {
+					// インテントのインスタンス生成
+					Intent intentMapMenu = new Intent(MainActivity.this, UseMapActivity.class);
+					// 登録メニューのアクティビティ起動
+					startActivity(intentMapMenu);
+			  }
+		  });		  
+		  
 		  
 	}	
 }

@@ -1,25 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="horizontal" >
+<ScrollView 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/scroll_view" 
+    android:layout_width="fill_parent" 
+    android:layout_height="fill_parent"> 
+    
+    <LinearLayout     
+        android:layout_width="fill_parent"    
+        android:layout_height="fill_parent"    
+        android:orientation="vertical" >
 
-	<TextView
-		android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp"
-        android:textSize="24sp"
-        android:text="監視サイトです。" />    
-    
-    
-     <Button
-      android:id="@+id/backMenu_button" 
-      android:layout_marginTop="20dp"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:text="メニューへ戻る"/>
-     
 
-    
-</LinearLayout>
+		<TextView
+			android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:textSize="24sp"
+	        android:text="宝箱ゲーム" />    
+
+		<TextView
+			android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:textSize="20sp"
+	        android:text="好きな道を選んでね" />    		
+		
+			        
+	   <LinearLayout     
+        	android:layout_width="fill_parent"    
+        	android:layout_height="fill_parent"    
+        	android:orientation="horizontal" >
+        	
+	     	<Button
+	      		android:id="@+id/backMenu_button" 
+	      		android:layout_marginTop="20dp"
+	      		android:layout_width="wrap_content"
+	      		android:layout_height="wrap_content"
+	      		android:text="引き返す"/>	    
+	    
+	     	<Button
+	      		android:id="@+id/success_button" 
+	      		android:layout_marginTop="20dp"
+	      		android:layout_width="wrap_content"
+	      		android:layout_height="wrap_content"
+	      		android:text="右の道"/>
+
+	     	<Button
+	      		android:id="@+id/fail_button" 
+	      		android:layout_marginTop="20dp"
+	      		android:layout_width="wrap_content"
+	      		android:layout_height="wrap_content"
+	      		android:text="左の道"/>	     	
+	     	
+	   </LinearLayout>
+	</LinearLayout>
+</ScrollView>

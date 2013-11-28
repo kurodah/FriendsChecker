@@ -1,16 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="horizontal" >
-    
-     <Button
-      android:id="@+id/checkFriends_button" 
-      android:layout_marginTop="20dp"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:text="友達チェック"/>
-     
-
-    
-</LinearLayout>
+<ScrollView 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/scroll_view" 
+    android:layout_width="fill_parent" 
+    android:layout_height="fill_parent"> 
+	<LinearLayout 
+	    android:layout_width="fill_parent"
+	    android:layout_height="fill_parent"
+	    android:orientation="vertical" >
+	    
+		<TextView
+			android:layout_width="match_parent"
+		    android:layout_height="wrap_content"
+		    android:textSize="24sp"
+		    android:text="メインメニュー" />      
+	    
+	    
+	     <Button
+	      android:id="@+id/playGame_button" 
+	      android:layout_marginTop="20dp"
+	      android:layout_width="wrap_content"
+	      android:layout_height="wrap_content"
+	      android:text="ゲームをする"/>
+	     
+	     
+	     <Button
+	      android:id="@+id/map_button" 
+	      android:layout_marginTop="20dp"
+	      android:layout_width="wrap_content"
+	      android:layout_height="wrap_content"
+	      android:text="地図を使う"/>     
+	     
+	</LinearLayout>
+</ScrollView>
