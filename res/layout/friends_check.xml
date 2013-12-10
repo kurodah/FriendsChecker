@@ -41,14 +41,14 @@
 	      		android:layout_marginTop="20dp"
 	      		android:layout_width="wrap_content"
 	      		android:layout_height="wrap_content"
-	      		android:text="右の道"/>
+	      		android:text="左の道"/>
 
 	     	<Button
 	      		android:id="@+id/fail_button" 
 	      		android:layout_marginTop="20dp"
 	      		android:layout_width="wrap_content"
 	      		android:layout_height="wrap_content"
-	      		android:text="左の道"/>	     	
+	      		android:text="右の道"/>	     	
 	     	
 	   </LinearLayout>
 	</LinearLayout>

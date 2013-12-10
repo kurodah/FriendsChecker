@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/scroll_view" 
+    android:layout_width="fill_parent" 
+    android:layout_height="fill_parent"> 
+	<LinearLayout 
+	    android:layout_width="fill_parent"
+	    android:layout_height="fill_parent"
+	    android:orientation="vertical" >
+	    
+		<TextView
+			android:layout_width="match_parent"
+		    android:layout_height="wrap_content"
+		    android:textSize="24sp"
+		    android:text="座標一覧" />      
+	    
+		<Button
+		    android:id="@+id/location_button"
+		    android:layout_width="wrap_content" 
+		    android:layout_height="wrap_content" 
+		    android:layout_marginLeft="5dp"  
+		    android:text="座標を表示する"/>    
+		
+		
+		<ScrollView
+      		android:layout_width="match_parent"            
+      		android:layout_height="wrap_content">
+		              <TableLayout android:id="@+id/list"  
+		                 		   android:layout_width="match_parent" 
+		                 		   android:layout_height="wrap_content">           
+		              </TableLayout> 
+      　　　　 </ScrollView>		
+	</LinearLayout>
+</ScrollView>
