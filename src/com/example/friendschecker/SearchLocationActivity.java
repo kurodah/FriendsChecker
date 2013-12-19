@@ -1,23 +1,20 @@
 package com.example.friendschecker;
 
+import java.util.List;
+
 import android.app.Activity;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
+import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.Gravity;
-import android.view.View;
-import android.widget.Button;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import com.example.dao.SearchLocationDao;
+import com.example.entity.LocationDataEntity;
 
 public class SearchLocationActivity extends Activity {
-
-	CreateProductHelper helper = null;
-	SQLiteDatabase db = null;
+    
 	public TextView txtInfo;
 
 	@Override
@@ -25,109 +22,107 @@ public class SearchLocationActivity extends Activity {
 		// TODO 自動生成されたメソッド・スタブ
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.search_location);
-		// Button searchButton = (Button)findViewById(R.id.location_button);
-		TableLayout tableLayout = (TableLayout) findViewById(R.id.list);
-		tableLayout.removeAllViews();
-		helper = new CreateProductHelper(SearchLocationActivity.this);
+		
+	    TableLayout tableLayout = (TableLayout) findViewById(R.id.list);
+	    tableLayout.removeAllViews();
+	    
+	    /**
+	     * これより画面（Activity）で表示する緯度・経度の表示用テーブルを作成する。
+	     */
+	    
+	    
+	    //ヘッダーに追加する行の宣言
+        TableRow headerRow = new TableRow(SearchLocationActivity.this);
 
-		db = helper.getWritableDatabase();
-		Cursor c = null;
-		String mapID = null;
-		int lat;
-		int longit;
-		String latText;
-		String longitText;
+        // ID（ヘッダー）
+        TextView headerID = new TextView(SearchLocationActivity.this);
+        headerID.setText("ID");
+        headerID.setBackgroundColor(Color.rgb(51, 153, 102));
+        headerID.setTextSize(12.0f);
+        headerID.setWidth(40);
 
+        // 緯度（ヘッダー）
+        TextView headerLat = new TextView(SearchLocationActivity.this);
+        headerLat.setText("緯度");
+        headerLat.setBackgroundColor(Color.rgb(51, 153, 102));
+        headerLat.setTextSize(12.0f);
+        headerLat.setWidth(200);
 
-		try {
-			
-			//DB使用の準備
-			db = helper.getWritableDatabase();
-			
-			//SQL文の準備と実行
-			String locationSQL = "Select * from  mapList";
-			c = db.rawQuery(locationSQL, null);
-			
-			
-			//ヘッダーに追加する行の宣言
-			TableRow headerRow = new TableRow(SearchLocationActivity.this);
+        // 経度（ヘッダー）
+        TextView headerLongit = new TextView(SearchLocationActivity.this);
+        headerLongit.setText("経度");
+        headerLongit.setBackgroundColor(Color.rgb(51, 153, 102));
+        headerLongit.setTextSize(12.0f);
+        headerLongit.setWidth(200);
 
-			// ID（ヘッダー）
-			TextView headerCheck = new TextView(SearchLocationActivity.this);
-			headerCheck.setText("ID");
-			headerCheck.setBackgroundColor(Color.rgb(51, 153, 102));
-			headerCheck.setTextSize(12.0f);
-			headerCheck.setWidth(40);
-
-			// 緯度（ヘッダー）
-			TextView headerLat = new TextView(SearchLocationActivity.this);
-			headerLat.setText("緯度");
-			headerLat.setBackgroundColor(Color.rgb(51, 153, 102));
-			headerLat.setTextSize(12.0f);
-			headerLat.setWidth(200);
-
-			// 経度（ヘッダー）
-			TextView headerLongit = new TextView(SearchLocationActivity.this);
-			headerLongit.setText("経度");
-			headerLongit.setBackgroundColor(Color.rgb(51, 153, 102));
-			headerLongit.setTextSize(12.0f);
-			headerLongit.setWidth(200);
-
-			// ヘッダーに各行を追加
-			headerRow.addView(headerCheck);
-			headerRow.addView(headerLat);
-			headerRow.addView(headerLongit);
-			tableLayout.addView(headerRow);			
-			
-			while (c.moveToNext()) {				
-				
-				//各項目の取得
-				mapID = c.getString(c.getColumnIndex("_id"));
-				lat = c.getInt(c.getColumnIndex("lat"));
-				longit = c.getInt(c.getColumnIndex("longit"));
-				latText = String.valueOf(lat);
-				longitText = String.valueOf(longit);
-				
-				
-				String getMAPMessage = "MAPID:"+mapID+latText+longitText;
-				Toast.makeText(SearchLocationActivity.this, getMAPMessage,
-						Toast.LENGTH_SHORT).show();
-				
-				
-				TableRow itemRow = new TableRow(SearchLocationActivity.this);				
-				
-				//idの列の追加
-				TextView idRow = new TextView(SearchLocationActivity.this);
-				idRow.setGravity(Gravity.LEFT);
-				idRow.setTextSize(12.0f);
-				idRow.setText(mapID);
-
-				//緯度の列の追加
-				TextView latRow = new TextView(SearchLocationActivity.this);
-				latRow.setGravity(Gravity.LEFT);
-				latRow.setTextSize(12.0f);
-				latRow.setText(latText);
-				
-				//経度
-				TextView longitRow = new TextView(SearchLocationActivity.this);
-				longitRow.setGravity(Gravity.LEFT);
-				longitRow.setTextSize(12.0f);
-				longitRow.setText(longitText);
-
-				//経度の列の追加
-				itemRow.addView(idRow);
-				itemRow.addView(latRow);
-				itemRow.addView(longitRow);
-				tableLayout.addView(itemRow);
-				
-			}
-
-		} catch (Exception e) {
-
-		} finally {
-			if (c != null) {
-				c.close();
-			}
-		}
+        // ヘッダーに各行を追加
+        headerRow.addView(headerID);
+        headerRow.addView(headerLat);
+        headerRow.addView(headerLongit);
+        tableLayout.addView(headerRow);        
+        
+        
+        /**
+         * 以下、DBに格納されているデータを出力する。
+         */
+        
+        Context con = SearchLocationActivity.this;
+        SearchLocationDao searchLocationDao = new SearchLocationDao(); 
+        List<LocationDataEntity> locList =  searchLocationDao.searchDB(con);
+        
+        //行を縞々にするための変数
+        int rowColor = 0;
+                
+        if(locList != null){
+            
+          //拡張For文でDBから取得したデータを取り出す
+            for(LocationDataEntity locDataEntity  :locList){
+                
+                String lineMapIDText;
+                String lineLatText;
+                String lineLongitText;
+                
+                TableRow lineRow = new TableRow(SearchLocationActivity.this);
+                TextView lineMapID = new TextView(SearchLocationActivity.this);
+                TextView lineLat = new TextView(SearchLocationActivity.this);
+                TextView lineLongit = new TextView(SearchLocationActivity.this);
+                
+     
+                           
+                
+                lineMapIDText =locDataEntity.getMapID();
+                lineLatText = String.valueOf(locDataEntity.getLat());
+                lineLongitText = String.valueOf(locDataEntity.getLongit());
+                
+                //MapIDのデータをセット
+                lineMapID.setText(lineMapIDText);
+                lineMapID.setBackgroundColor(Color.rgb(51, 153, 102));
+                lineMapID.setTextSize(12.0f);
+                lineMapID.setWidth(200);
+                
+                //緯度のデータをセット
+                lineLat.setText(lineLatText);
+                lineLat.setBackgroundColor(Color.rgb(51, 153, 102));
+                lineLat.setTextSize(12.0f);
+                lineLat.setWidth(200);
+                
+                //経度のデータをセット
+                lineLongit.setText(lineLongitText);
+                lineLongit.setBackgroundColor(Color.rgb(51, 153, 102));
+                lineLongit.setTextSize(12.0f);
+                lineLongit.setWidth(200);       
+                
+                if(rowColor%2 == 1){
+                	lineRow.setBackgroundColor(Color.rgb(204,255,204));
+                }
+                
+                
+                // MapID、緯度、経度を一行として追加
+                lineRow.addView(lineMapID);
+                lineRow.addView(lineLat);
+                lineRow.addView(lineLongit);
+                tableLayout.addView(lineRow);    
+            }
+        } 
 	}
 }

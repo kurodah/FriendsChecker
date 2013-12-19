@@ -4,47 +4,34 @@
     android:id="@+id/scroll_view" 
     android:layout_width="fill_parent" 
     android:layout_height="fill_parent"> 
-	<LinearLayout 
-	    android:layout_width="fill_parent"
-	    android:layout_height="fill_parent"
-	    android:orientation="vertical" >
-	    
+    
+   <LinearLayout     
+        android:layout_width="fill_parent"    
+        android:layout_height="fill_parent"    
+        android:orientation="vertical" >
+        
 		<TextView
 			android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:layout_marginTop="5dp"
+	        android:layout_marginBottom="5dp"
+	        android:textSize="16sp"
+	        android:text="メインメニュー" />
+
+		<Button
+		    android:id="@+id/search_button"
+		    android:layout_width="wrap_content"
 		    android:layout_height="wrap_content"
-		    android:textSize="24sp"
-		    android:text="メインメニュー" />      
-	    
-	    
-	     <Button
-	      android:id="@+id/playGame_button" 
-	      android:layout_marginTop="20dp"
-	      android:layout_width="wrap_content"
-	      android:layout_height="wrap_content"
-	      android:text="ゲームをする"/>
-	     
-	     
-	     <Button
-	      android:id="@+id/map_button" 
-	      android:layout_marginTop="20dp"
-	      android:layout_width="wrap_content"
-	      android:layout_height="wrap_content"
-	      android:text="地図を使う"/>     
-	     
-	     <Button
-	      android:id="@+id/searchLocation_button" 
-	      android:layout_marginTop="20dp"
-	      android:layout_width="wrap_content"
-	      android:layout_height="wrap_content"
-	      android:text="座標の確認"/>     
-	     
-	    <Button
-	      android:id="@+id/registLocation_button" 
-	      android:layout_marginTop="20dp"
-	      android:layout_width="wrap_content"
-	      android:layout_height="wrap_content"
-	      android:text="座標の登録"/> 
-	     
-	     
+		    android:layout_marginTop="20dp"
+		    android:text="検索" />
+
+		<Button
+		    android:id="@+id/regist_button"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:layout_marginTop="20dp"
+		    android:text="登録" />
+
+		
 	</LinearLayout>
 </ScrollView>
