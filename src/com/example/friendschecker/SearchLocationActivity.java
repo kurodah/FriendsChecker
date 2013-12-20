@@ -112,10 +112,12 @@ public class SearchLocationActivity extends Activity {
                 lineLongit.setTextSize(12.0f);
                 lineLongit.setWidth(200);       
                 
-                if(rowColor%2 == 1){
+                
+                if(rowColor%2 == 0){
                 	lineRow.setBackgroundColor(Color.rgb(204,255,204));
                 }
-                
+                //次の行の色を変えるためプラス1する。
+                rowColor = rowColor + 1;
                 
                 // MapID、緯度、経度を一行として追加
                 lineRow.addView(lineMapID);

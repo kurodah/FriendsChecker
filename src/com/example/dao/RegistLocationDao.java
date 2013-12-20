@@ -43,5 +43,4 @@ public class RegistLocationDao extends Activity{
             db.close();
         }
     }
-
 }
