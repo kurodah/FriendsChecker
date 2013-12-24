@@ -1,6 +1,5 @@
 package com.example.friendschecker;
 
-
 import com.google.analytics.tracking.android.EasyTracker;
 import com.google.analytics.tracking.android.Fields;
 import com.google.analytics.tracking.android.MapBuilder;
@@ -15,22 +14,20 @@ import android.widget.Button;
 import android.widget.ImageView;
 
 public class FailActivity extends Activity {
-	
+
 	public void onStart() {
 		super.onStart();
 		EasyTracker.getInstance(getApplicationContext()).activityStart(this);
-		//サイト名の記述
+		// 繧ｵ繧､繝亥錐縺ｮ險倩ｿｰ
 		Tracker easyTracker = EasyTracker.getInstance(this);
-		easyTracker.set(Fields.SCREEN_NAME, "失敗ページ");
-		easyTracker.send(MapBuilder
-			    .createAppView()
-			    .build());
-	
-	}		
-	
+		easyTracker.set(Fields.SCREEN_NAME, "螟ｱ謨励�壹�ｼ繧ｸ");
+		easyTracker.send(MapBuilder.createAppView().build());
+
+	}
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.fail_page);
-	}	
+	}
 }

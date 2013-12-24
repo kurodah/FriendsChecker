@@ -1,4 +1,5 @@
 package com.example.friendschecker;
+
 import com.google.analytics.tracking.android.EasyTracker;
 import com.google.analytics.tracking.android.Fields;
 import com.google.analytics.tracking.android.GoogleAnalytics;
@@ -11,20 +12,18 @@ import android.view.View;
 import android.widget.Button;
 
 public class CheckFriendsActivity extends Activity {
-	
+
 	private static Tracker mTracker;
-	private static final String GA_PROPERTY_ID = "UA-42723657-1"; 
+	private static final String GA_PROPERTY_ID = "UA-42723657-1";
 
 	public void onStart() {
 		super.onStart();
 		EasyTracker.getInstance(getApplicationContext()).activityStart(this);
-		
-		//ƒTƒCƒg–¼‚Ì‹Lq
+
+		// ã‚µã‚¤ãƒˆåã®è¨˜è¿°
 		Tracker easyTracker = EasyTracker.getInstance(this);
-		easyTracker.set(Fields.SCREEN_NAME, "ŠÄ‹‚µ‚Ä‚é‚¼");
-		easyTracker.send(MapBuilder
-			    .createAppView()
-			    .build());
+		easyTracker.set(Fields.SCREEN_NAME, "ç›£è¦–ã—ã¦ã‚‹ã");
+		easyTracker.send(MapBuilder.createAppView().build());
 	}
 
 	@Override
@@ -35,58 +34,53 @@ public class CheckFriendsActivity extends Activity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		  mTracker = GoogleAnalytics.getInstance(this).getTracker(GA_PROPERTY_ID); 	
-		  super.onCreate(savedInstanceState);
-		  setContentView(R.layout.friends_check);
-		  
-		  
-		//ƒ{ƒ^ƒ“‚Ì“Á’è
-		  Button backMenuButton=(Button)findViewById(R.id.backMenu_button);
-		  Button successRouteButton=(Button)findViewById(R.id.success_button);
-		  Button failRouteButton=(Button)findViewById(R.id.fail_button);
-		  
-		  
-		  
-		  //ƒƒCƒ“ƒƒjƒ…[‚Öƒ{ƒ^ƒ“‚ª‰Ÿ‚³‚ê‚½ê‡‚Ìˆ—
-		  backMenuButton.setOnClickListener(new View.OnClickListener() {
-			  @Override
-			  public void onClick(View v) {
-					// ƒCƒ“ƒeƒ“ƒg‚ÌƒCƒ“ƒXƒ^ƒ“ƒX¶¬
-					Intent intentMainMenu = new Intent(CheckFriendsActivity.this, MainActivity.class);
-					// ƒƒCƒ“ƒƒjƒ…[‚ÌƒAƒNƒeƒBƒrƒeƒB‹N“®
-					startActivity(intentMainMenu);
-			  }
-		  });
-		    
-		  
-		  //ƒ‹[ƒg1ƒ{ƒ^ƒ“‚ª‰Ÿ‚³‚ê‚½ê‡‚Ìˆ—
-		  successRouteButton.setOnClickListener(new View.OnClickListener() {
-			  @Override
-			  public void onClick(View v) {			    
-				    mTracker.send(MapBuilder
-				    		.createEvent("ƒ{ƒ^ƒ“‚Ì‘I‘ğ", "ƒ‹[ƒg1‚ÌÀs", "ƒ{ƒ^ƒ“", null) 
-				    		.set(Fields.SESSION_CONTROL, "start") 
-				    		.build()
-				    ); 
-				  
-					// ƒCƒ“ƒeƒ“ƒg‚ÌƒCƒ“ƒXƒ^ƒ“ƒX¶¬
-					Intent intentSuccessMenu = new Intent(CheckFriendsActivity.this, SuccessActivity.class);
-					// “o˜^ƒƒjƒ…[‚ÌƒAƒNƒeƒBƒrƒeƒB‹N“®
-					startActivity(intentSuccessMenu); 
-			  }
-		  });
+		mTracker = GoogleAnalytics.getInstance(this).getTracker(GA_PROPERTY_ID);
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.friends_check);
 
-				   		  
-		  //ƒ‹[ƒg2ƒ{ƒ^ƒ“‚ª‰Ÿ‚³‚ê‚½ê‡‚Ìˆ—
-		  failRouteButton.setOnClickListener(new View.OnClickListener() {
-			  @Override
-			  public void onClick(View v) {
-					// ƒCƒ“ƒeƒ“ƒg‚ÌƒCƒ“ƒXƒ^ƒ“ƒX¶¬
-					Intent intentFailMenu = new Intent(CheckFriendsActivity.this, FailActivity.class);
-					// “o˜^ƒƒjƒ…[‚ÌƒAƒNƒeƒBƒrƒeƒB‹N“®
-					startActivity(intentFailMenu);
-			  }
-		  });		
-	}		
+		// ãƒœã‚¿ãƒ³ã®ç‰¹å®š
+		Button backMenuButton = (Button) findViewById(R.id.backMenu_button);
+		Button successRouteButton = (Button) findViewById(R.id.success_button);
+		Button failRouteButton = (Button) findViewById(R.id.fail_button);
+
+		// ãƒ¡ã‚¤ãƒ³ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã¸ãƒœã‚¿ãƒ³ãŒæŠ¼ã•ã‚ŒãŸå ´åˆã®å‡¦ç†
+		backMenuButton.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				// ã‚¤ãƒ³ãƒ†ãƒ³ãƒˆã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ç”Ÿæˆ
+				Intent intentMainMenu = new Intent(CheckFriendsActivity.this,
+						MainActivity.class);
+				// ãƒ¡ã‚¤ãƒ³ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®ã‚¢ã‚¯ãƒ†ã‚£ãƒ“ãƒ†ã‚£èµ·å‹•
+				startActivity(intentMainMenu);
+			}
+		});
+
+		// ãƒ«ãƒ¼ãƒˆ1ãƒœã‚¿ãƒ³ãŒæŠ¼ã•ã‚ŒãŸå ´åˆã®å‡¦ç†
+		successRouteButton.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				mTracker.send(MapBuilder
+						.createEvent("ãƒœã‚¿ãƒ³ã®é¸æŠ", "ãƒ«ãƒ¼ãƒˆ1ã®å®Ÿè¡Œ", "ãƒœã‚¿ãƒ³", null)
+						.set(Fields.SESSION_CONTROL, "start").build());
+
+				// ã‚¤ãƒ³ãƒ†ãƒ³ãƒˆã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ç”Ÿæˆ
+				Intent intentSuccessMenu = new Intent(
+						CheckFriendsActivity.this, SuccessActivity.class);
+				// ç™»éŒ²ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®ã‚¢ã‚¯ãƒ†ã‚£ãƒ“ãƒ†ã‚£èµ·å‹•
+				startActivity(intentSuccessMenu);
+			}
+		});
+
+		// ãƒ«ãƒ¼ãƒˆ2ãƒœã‚¿ãƒ³ãŒæŠ¼ã•ã‚ŒãŸå ´åˆã®å‡¦ç†
+		failRouteButton.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				// ã‚¤ãƒ³ãƒ†ãƒ³ãƒˆã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ç”Ÿæˆ
+				Intent intentFailMenu = new Intent(CheckFriendsActivity.this,
+						FailActivity.class);
+				// ç™»éŒ²ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®ã‚¢ã‚¯ãƒ†ã‚£ãƒ“ãƒ†ã‚£èµ·å‹•
+				startActivity(intentFailMenu);
+			}
+		});
+	}
 }
-	

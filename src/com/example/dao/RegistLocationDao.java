@@ -8,39 +8,37 @@ import android.widget.Toast;
 import com.example.friendschecker.CreateProductHelper;
 
 /**
- *À•W‚ğ“o˜^‚·‚é‚½‚ß‚É•K—v‚ÈDAOƒNƒ‰ƒX
+ * åº§æ¨™ã‚’ç™»éŒ²ã™ã‚‹ãŸã‚ã«å¿…è¦ãªDAOã‚¯ãƒ©ã‚¹
  */
 
-public class RegistLocationDao extends Activity{
-    
-    public void registDB(int lat,int longit,Context con){
-        
-        CreateProductHelper helper = null;
-        SQLiteDatabase db = null;
-        helper = new CreateProductHelper(con);
-        db = helper.getWritableDatabase();
-                
-        //’l‚Ìæ“¾
-        try{        
-            String insertSQL = "insert into mapList(lat,longit)values('" + 
-            lat + "','"+ longit + "')";
-            
-            //SQL‚ÌÀs
-            db.execSQL(insertSQL);
-            
-            //Šm”F         
-            String registLatMessage = "ˆÜ“x"+lat;  
-            Toast.makeText(con,
-                   registLatMessage, Toast.LENGTH_SHORT).show();
-            String registLongitMessage = "Œo“x"+longit;  
-            Toast.makeText(con,
-                   registLongitMessage, Toast.LENGTH_SHORT).show();
-        }catch(Exception e){
-             String failMessage = "¸”sƒpƒ^[ƒ“";
-             Toast.makeText(getApplicationContext(),
-                     failMessage, Toast.LENGTH_SHORT).show();
-        }finally{
-            db.close();
-        }
-    }
+public class RegistLocationDao extends Activity {
+
+	public void registDB(int lat, int longit, Context con) {
+
+		CreateProductHelper helper = null;
+		SQLiteDatabase db = null;
+		helper = new CreateProductHelper(con);
+		db = helper.getWritableDatabase();
+
+		// å€¤ã®å–å¾—
+		try {
+			String insertSQL = "insert into mapList(lat,longit)values('" + lat
+					+ "','" + longit + "')";
+
+			// SQLã®å®Ÿè¡Œ
+			db.execSQL(insertSQL);
+
+			// ç¢ºèª
+			String registLatMessage = "ç·¯åº¦" + lat;
+			Toast.makeText(con, registLatMessage, Toast.LENGTH_SHORT).show();
+			String registLongitMessage = "çµŒåº¦" + longit;
+			Toast.makeText(con, registLongitMessage, Toast.LENGTH_SHORT).show();
+		} catch (Exception e) {
+			String failMessage = "å¤±æ•—ãƒ‘ã‚¿ãƒ¼ãƒ³";
+			Toast.makeText(getApplicationContext(), failMessage,
+					Toast.LENGTH_SHORT).show();
+		} finally {
+			db.close();
+		}
+	}
 }

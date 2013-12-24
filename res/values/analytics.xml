@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <resources xmlns:tools="https://schemas.android.com/tools"
     tools:ignore="TypographyDashes">
-  <!-- アカウントのトラッキングID -->
+  <!-- 郢ｧ�｢郢ｧ�ｫ郢ｧ�ｦ郢晢ｽｳ郢晏現�ｽ郢晏現ﾎ帷ｹ晢ｿｽ縺冗ｹ晢ｽｳ郢ｧ�ｰID -->
   <string name="ga_trackingId">UA-42723657-1</string>
-  <!-- Activityの自動トラッキング -->
+  <!-- Activity邵ｺ�ｮ髢ｾ�ｪ陷崎ｼ斐Κ郢晢ｽｩ郢晢ｿｽ縺冗ｹ晢ｽｳ郢ｧ�ｰ -->
   <bool name="ga_autoActivityTracking">true</bool>
-  <!-- Exceptionの自動トラッキング -->
+  <!-- Exception邵ｺ�ｮ髢ｾ�ｪ陷崎ｼ斐Κ郢晢ｽｩ郢晢ｿｽ縺冗ｹ晢ｽｳ郢ｧ�ｰ -->
   <bool name="ga_reportUncaughtExceptions">true</bool>
 </resources>

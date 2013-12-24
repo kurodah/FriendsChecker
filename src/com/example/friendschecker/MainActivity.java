@@ -1,6 +1,5 @@
 package com.example.friendschecker;
 
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -16,114 +15,123 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends Activity {
-	
+
 	TextView tv;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		getWindow().requestFeature(Window.FEATURE_ACTION_BAR); 
+		getWindow().requestFeature(Window.FEATURE_ACTION_BAR);
 		setContentView(R.layout.main_menu);
-		setTheme(android.R.style.Theme_Black_NoTitleBar); 
-		Button registButton=(Button)findViewById(R.id.regist_button);
-		Button searchButton=(Button)findViewById(R.id.search_button);
-		
-	    //“o˜^ƒ{ƒ^ƒ“‚ª‰Ÿ‚³‚ê‚½ê‡‚Ìˆ—
-        registButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                  // ƒCƒ“ƒeƒ“ƒg‚ÌƒCƒ“ƒXƒ^ƒ“ƒX¶¬
-                  Intent intentRegistMenu = new Intent(MainActivity.this, RegistLocationActivity.class);
-                  // ƒƒCƒ“ƒƒjƒ…[‚ÌƒAƒNƒeƒBƒrƒeƒB‹N“®
-                  startActivity(intentRegistMenu);
-            }
-        });
-        
-        //ŒŸõƒ{ƒ^ƒ“‚ª‰Ÿ‚³‚ê‚½ê‡‚Ìˆ—
-        searchButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                  // ƒCƒ“ƒeƒ“ƒg‚ÌƒCƒ“ƒXƒ^ƒ“ƒX¶¬
-                  Intent intentRegistMenu = new Intent(MainActivity.this, SearchLocationActivity.class);
-                  // ƒƒCƒ“ƒƒjƒ…[‚ÌƒAƒNƒeƒBƒrƒeƒB‹N“®
-                  startActivity(intentRegistMenu);
-            }
-        });
-		
-	}	
-	
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {     
-		// ƒƒjƒ…[‚Ì—v‘f‚ğ’Ç‰Á    
-		menu.add("ƒQ[ƒ€‚ğ‚·‚é");   
-		menu.add("’n}‚ğg‚¤");   
-		menu.add("À•W‚ÌŠm”F");   
-		menu.add("À•W‚Ì“o˜^"); 
-		menu.add("ƒeƒXƒg");   
-		// ƒƒjƒ…[‚Ì—v‘f‚ğ’Ç‰Á‚µ‚Äæ“¾     
-		MenuItem actionItem = menu.add("Action Button");      
-		// SHOW_AS_ACTION_IF_ROOM:—]—T‚ª‚ ‚ê‚Î•\¦     
-		actionItem.setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
-		// ƒAƒCƒRƒ“‚ğİ’è    
-		actionItem.setIcon(android.R.drawable.ic_menu_share);  
-		return true; 
+		setTheme(android.R.style.Theme_Black_NoTitleBar);
+		Button registButton = (Button) findViewById(R.id.regist_button);
+		Button searchButton = (Button) findViewById(R.id.search_button);
+
+		// ç™»éŒ²ãƒœã‚¿ãƒ³ãŒæŠ¼ã•ã‚ŒãŸå ´åˆã®å‡¦ç†
+		registButton.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				// ã‚¤ãƒ³ãƒ†ãƒ³ãƒˆã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ç”Ÿæˆ
+				Intent intentRegistMenu = new Intent(MainActivity.this,
+						RegistLocationActivity.class);
+				// ãƒ¡ã‚¤ãƒ³ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®ã‚¢ã‚¯ãƒ†ã‚£ãƒ“ãƒ†ã‚£èµ·å‹•
+				startActivity(intentRegistMenu);
+			}
+		});
+
+		// æ¤œç´¢ãƒœã‚¿ãƒ³ãŒæŠ¼ã•ã‚ŒãŸå ´åˆã®å‡¦ç†
+		searchButton.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				// ã‚¤ãƒ³ãƒ†ãƒ³ãƒˆã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ç”Ÿæˆ
+				Intent intentRegistMenu = new Intent(MainActivity.this,
+						SearchLocationActivity.class);
+				// ãƒ¡ã‚¤ãƒ³ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®ã‚¢ã‚¯ãƒ†ã‚£ãƒ“ãƒ†ã‚£èµ·å‹•
+				startActivity(intentRegistMenu);
+			}
+		});
+
 	}
-		
+
 	@Override
-    public boolean onOptionsItemSelected(MenuItem item) {     
-	
-		if(item.getTitle()=="ƒeƒXƒg"){
-        	InputBox("“ü—Í‚µ‚Ä‚­‚¾‚³‚¢B", "ƒeƒLƒXƒg“ü—Í");
-        	return true; 
+	public boolean onCreateOptionsMenu(Menu menu) {
+		// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®è¦ç´ ã‚’è¿½åŠ 
+		menu.add("ã‚²ãƒ¼ãƒ ã‚’ã™ã‚‹");
+		menu.add("åœ°å›³ã‚’ä½¿ã†");
+		menu.add("åº§æ¨™ã®ç¢ºèª");
+		menu.add("åº§æ¨™ã®ç™»éŒ²");
+		menu.add("ãƒ†ã‚¹ãƒˆ");
+		// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®è¦ç´ ã‚’è¿½åŠ ã—ã¦å–å¾—
+		MenuItem actionItem = menu.add("Action Button");
+		// SHOW_AS_ACTION_IF_ROOM:ä½™è£•ãŒã‚ã‚Œã°è¡¨ç¤º
+		actionItem.setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
+		// ã‚¢ã‚¤ã‚³ãƒ³ã‚’è¨­å®š
+		actionItem.setIcon(android.R.drawable.ic_menu_share);
+		return true;
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+
+		if (item.getTitle() == "ãƒ†ã‚¹ãƒˆ") {
+			InputBox("å…¥åŠ›ã—ã¦ãã ã•ã„ã€‚", "ãƒ†ã‚­ã‚¹ãƒˆå…¥åŠ›");
+			return true;
 		}
-		
-		if(item.getTitle()=="ƒQ[ƒ€‚ğ‚·‚é"){
-			Intent intentGameMenu = new Intent(MainActivity.this, CheckFriendsActivity.class);
-			// “o˜^ƒƒjƒ…[‚ÌƒAƒNƒeƒBƒrƒeƒB‹N“®
+
+		if (item.getTitle() == "ã‚²ãƒ¼ãƒ ã‚’ã™ã‚‹") {
+			Intent intentGameMenu = new Intent(MainActivity.this,
+					CheckFriendsActivity.class);
+			// ç™»éŒ²ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®ã‚¢ã‚¯ãƒ†ã‚£ãƒ“ãƒ†ã‚£èµ·å‹•
 			startActivity(intentGameMenu);
-			return true; 	
+			return true;
 		}
-		
-		if(item.getTitle()=="’n}‚ğg‚¤"){
-			// ƒCƒ“ƒeƒ“ƒg‚ÌƒCƒ“ƒXƒ^ƒ“ƒX¶¬
-			Intent intentMapMenu = new Intent(MainActivity.this, UseMapActivity.class);
-			// Mapƒƒjƒ…[‚ÌƒAƒNƒeƒBƒrƒeƒB‹N“®
+
+		if (item.getTitle() == "åœ°å›³ã‚’ä½¿ã†") {
+			// ã‚¤ãƒ³ãƒ†ãƒ³ãƒˆã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ç”Ÿæˆ
+			Intent intentMapMenu = new Intent(MainActivity.this,
+					UseMapActivity.class);
+			// Mapãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®ã‚¢ã‚¯ãƒ†ã‚£ãƒ“ãƒ†ã‚£èµ·å‹•
 			startActivity(intentMapMenu);
-			return true; 	
+			return true;
 		}
-		
-		if(item.getTitle()=="À•W‚ÌŠm”F"){
-			Intent intentSearchLocation = new Intent(MainActivity.this, SearchLocationActivity.class);
-			// “o˜^ƒƒjƒ…[‚ÌƒAƒNƒeƒBƒrƒeƒB‹N“®
+
+		if (item.getTitle() == "åº§æ¨™ã®ç¢ºèª") {
+			Intent intentSearchLocation = new Intent(MainActivity.this,
+					SearchLocationActivity.class);
+			// ç™»éŒ²ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®ã‚¢ã‚¯ãƒ†ã‚£ãƒ“ãƒ†ã‚£èµ·å‹•
 			startActivity(intentSearchLocation);
-			return true; 	
+			return true;
 		}
-		
-		if(item.getTitle()=="À•W‚Ì“o˜^"){
-			// ƒCƒ“ƒeƒ“ƒg‚ÌƒCƒ“ƒXƒ^ƒ“ƒX¶¬
-			Intent intentRegistLocation = new Intent(MainActivity.this, RegistLocationActivity.class);
-			// “o˜^ƒƒjƒ…[‚ÌƒAƒNƒeƒBƒrƒeƒB‹N“®
+
+		if (item.getTitle() == "åº§æ¨™ã®ç™»éŒ²") {
+			// ã‚¤ãƒ³ãƒ†ãƒ³ãƒˆã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ç”Ÿæˆ
+			Intent intentRegistLocation = new Intent(MainActivity.this,
+					RegistLocationActivity.class);
+			// ç™»éŒ²ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®ã‚¢ã‚¯ãƒ†ã‚£ãƒ“ãƒ†ã‚£èµ·å‹•
 			startActivity(intentRegistLocation);
-			return true; 	
+			return true;
 		}
-		return true; 
-	} 
-	
-	//“ü—Íƒ_ƒCƒAƒƒO‚Ìì¬
+		return true;
+	}
+
+	// å…¥åŠ›ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ã®ä½œæˆ
 	void InputBox(String message, String title) {
 		final EditText editText = new EditText(MainActivity.this);
-		AlertDialog.Builder alertDialog=new AlertDialog.Builder(MainActivity.this);
-	    alertDialog.setTitle(title);
-	    alertDialog.setMessage(message);
-	    alertDialog.setView(editText);
-	    alertDialog.setIcon(android.R.drawable.ic_dialog_info);
-	    alertDialog.setPositiveButton("OK",new DialogInterface.OnClickListener() {
-	        public void onClick(DialogInterface dialog,int whichButton) {
-	        	String input = editText.getText().toString();
-	        	Toast.makeText(MainActivity.this, input, Toast.LENGTH_LONG).show();
-	        }
-	    });
-	    alertDialog.create();
-	    alertDialog.show();
+		AlertDialog.Builder alertDialog = new AlertDialog.Builder(
+				MainActivity.this);
+		alertDialog.setTitle(title);
+		alertDialog.setMessage(message);
+		alertDialog.setView(editText);
+		alertDialog.setIcon(android.R.drawable.ic_dialog_info);
+		alertDialog.setPositiveButton("OK",
+				new DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dialog, int whichButton) {
+						String input = editText.getText().toString();
+						Toast.makeText(MainActivity.this, input,
+								Toast.LENGTH_LONG).show();
+					}
+				});
+		alertDialog.create();
+		alertDialog.show();
 	}
 }

@@ -51,7 +51,7 @@
 			android:name="com.example.friendschecker.FailActivity">
 　　　　	</activity>
         <activity 
-			android:name="com.example.friendschecker.UseMapActivity">
+			android:name="com.example.friendschecker.LocationMapActivity">
 　　　　	</activity>    
         <activity 
 			android:name="com.example.friendschecker.SearchLocationActivity">

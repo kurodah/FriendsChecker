@@ -15,68 +15,68 @@ import com.example.entity.LocationDataEntity;
 
 public class SearchLocationActivity extends Activity {
     
-	public TextView txtInfo;
+        public TextView txtInfo;
 
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		// TODO ©“®¶¬‚³‚ê‚½ƒƒ\ƒbƒhEƒXƒ^ƒu
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.search_location);
-		
-	    TableLayout tableLayout = (TableLayout) findViewById(R.id.list);
-	    tableLayout.removeAllViews();
-	    
-	    /**
-	     * ‚±‚ê‚æ‚è‰æ–ÊiActivityj‚Å•\¦‚·‚éˆÜ“xEŒo“x‚Ì•\¦—pƒe[ƒuƒ‹‚ğì¬‚·‚éB
-	     */
-	    
-	    
-	    //ƒwƒbƒ_[‚É’Ç‰Á‚·‚és‚ÌéŒ¾
+        @Override
+        protected void onCreate(Bundle savedInstanceState) {
+                // TODO è‡ªå‹•ç”Ÿæˆã•ã‚ŒãŸãƒ¡ã‚½ãƒƒãƒ‰ãƒ»ã‚¹ã‚¿ãƒ–
+                super.onCreate(savedInstanceState);
+                setContentView(R.layout.search_location);
+                
+         TableLayout tableLayout = (TableLayout) findViewById(R.id.list);
+         tableLayout.removeAllViews();
+        
+         /**
+         * ã“ã‚Œã‚ˆã‚Šç”»é¢ï¼ˆActivityï¼‰ã§è¡¨ç¤ºã™ã‚‹ç·¯åº¦ãƒ»çµŒåº¦ã®è¡¨ç¤ºç”¨ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’ä½œæˆã™ã‚‹ã€‚
+         */
+        
+        
+         //ãƒ˜ãƒƒãƒ€ãƒ¼ã«è¿½åŠ ã™ã‚‹è¡Œã®å®£è¨€
         TableRow headerRow = new TableRow(SearchLocationActivity.this);
 
-        // IDiƒwƒbƒ_[j
+        // IDï¼ˆãƒ˜ãƒƒãƒ€ãƒ¼ï¼‰
         TextView headerID = new TextView(SearchLocationActivity.this);
         headerID.setText("ID");
         headerID.setBackgroundColor(Color.rgb(51, 153, 102));
         headerID.setTextSize(12.0f);
         headerID.setWidth(40);
 
-        // ˆÜ“xiƒwƒbƒ_[j
+        // ç·¯åº¦ï¼ˆãƒ˜ãƒƒãƒ€ãƒ¼ï¼‰
         TextView headerLat = new TextView(SearchLocationActivity.this);
-        headerLat.setText("ˆÜ“x");
+        headerLat.setText("ç·¯åº¦");
         headerLat.setBackgroundColor(Color.rgb(51, 153, 102));
         headerLat.setTextSize(12.0f);
         headerLat.setWidth(200);
 
-        // Œo“xiƒwƒbƒ_[j
+        // çµŒåº¦ï¼ˆãƒ˜ãƒƒãƒ€ãƒ¼ï¼‰
         TextView headerLongit = new TextView(SearchLocationActivity.this);
-        headerLongit.setText("Œo“x");
+        headerLongit.setText("çµŒåº¦");
         headerLongit.setBackgroundColor(Color.rgb(51, 153, 102));
         headerLongit.setTextSize(12.0f);
         headerLongit.setWidth(200);
 
-        // ƒwƒbƒ_[‚ÉŠes‚ğ’Ç‰Á
+        // ãƒ˜ãƒƒãƒ€ãƒ¼ã«å„è¡Œã‚’è¿½åŠ 
         headerRow.addView(headerID);
         headerRow.addView(headerLat);
         headerRow.addView(headerLongit);
-        tableLayout.addView(headerRow);        
+        tableLayout.addView(headerRow);
         
         
         /**
-         * ˆÈ‰ºADB‚ÉŠi”[‚³‚ê‚Ä‚¢‚éƒf[ƒ^‚ğo—Í‚·‚éB
-         */
+* ä»¥ä¸‹ã€DBã«æ ¼ç´ã•ã‚Œã¦ã„ã‚‹ãƒ‡ãƒ¼ã‚¿ã‚’å‡ºåŠ›ã™ã‚‹ã€‚
+*/
         
         Context con = SearchLocationActivity.this;
-        SearchLocationDao searchLocationDao = new SearchLocationDao(); 
-        List<LocationDataEntity> locList =  searchLocationDao.searchDB(con);
+        SearchLocationDao searchLocationDao = new SearchLocationDao();
+        List<LocationDataEntity> locList = searchLocationDao.searchDB(con);
         
-        //s‚ğÈX‚É‚·‚é‚½‚ß‚Ì•Ï”
+        //è¡Œã‚’ç¸ã€…ã«ã™ã‚‹ãŸã‚ã®å¤‰æ•°
         int rowColor = 0;
                 
         if(locList != null){
             
-          //Šg’£For•¶‚ÅDB‚©‚çæ“¾‚µ‚½ƒf[ƒ^‚ğæ‚èo‚·
-            for(LocationDataEntity locDataEntity  :locList){
+          //æ‹¡å¼µForæ–‡ã§DBã‹ã‚‰å–å¾—ã—ãŸãƒ‡ãƒ¼ã‚¿ã‚’å–ã‚Šå‡ºã™
+            for(LocationDataEntity locDataEntity :locList){
                 
                 String lineMapIDText;
                 String lineLatText;
@@ -94,37 +94,37 @@ public class SearchLocationActivity extends Activity {
                 lineLatText = String.valueOf(locDataEntity.getLat());
                 lineLongitText = String.valueOf(locDataEntity.getLongit());
                 
-                //MapID‚Ìƒf[ƒ^‚ğƒZƒbƒg
+                //MapIDã®ãƒ‡ãƒ¼ã‚¿ã‚’ã‚»ãƒƒãƒˆ
                 lineMapID.setText(lineMapIDText);
                 lineMapID.setBackgroundColor(Color.rgb(51, 153, 102));
                 lineMapID.setTextSize(12.0f);
                 lineMapID.setWidth(200);
                 
-                //ˆÜ“x‚Ìƒf[ƒ^‚ğƒZƒbƒg
+                //ç·¯åº¦ã®ãƒ‡ãƒ¼ã‚¿ã‚’ã‚»ãƒƒãƒˆ
                 lineLat.setText(lineLatText);
                 lineLat.setBackgroundColor(Color.rgb(51, 153, 102));
                 lineLat.setTextSize(12.0f);
                 lineLat.setWidth(200);
                 
-                //Œo“x‚Ìƒf[ƒ^‚ğƒZƒbƒg
+                //çµŒåº¦ã®ãƒ‡ãƒ¼ã‚¿ã‚’ã‚»ãƒƒãƒˆ
                 lineLongit.setText(lineLongitText);
                 lineLongit.setBackgroundColor(Color.rgb(51, 153, 102));
                 lineLongit.setTextSize(12.0f);
-                lineLongit.setWidth(200);       
+                lineLongit.setWidth(200);
                 
                 
                 if(rowColor%2 == 0){
-                	lineRow.setBackgroundColor(Color.rgb(204,255,204));
+                        lineRow.setBackgroundColor(Color.rgb(204,255,204));
                 }
-                //Ÿ‚Ìs‚ÌF‚ğ•Ï‚¦‚é‚½‚ßƒvƒ‰ƒX1‚·‚éB
+                //æ¬¡ã®è¡Œã®è‰²ã‚’å¤‰ãˆã‚‹ãŸã‚ãƒ—ãƒ©ã‚¹1ã™ã‚‹ã€‚
                 rowColor = rowColor + 1;
                 
-                // MapIDAˆÜ“xAŒo“x‚ğˆês‚Æ‚µ‚Ä’Ç‰Á
+                // MapIDã€ç·¯åº¦ã€çµŒåº¦ã‚’ä¸€è¡Œã¨ã—ã¦è¿½åŠ 
                 lineRow.addView(lineMapID);
                 lineRow.addView(lineLat);
                 lineRow.addView(lineLongit);
-                tableLayout.addView(lineRow);    
+                tableLayout.addView(lineRow);
             }
-        } 
-	}
+        }
+        }
 }

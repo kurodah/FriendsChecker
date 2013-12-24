@@ -11,63 +11,61 @@ import android.database.sqlite.SQLiteDatabase;
 import com.example.entity.LocationDataEntity;
 import com.example.friendschecker.CreateProductHelper;
 
-public class SearchLocationDao extends Activity{
-    
+public class SearchLocationDao extends Activity {
 
-    public List<LocationDataEntity> searchDB(Context con){
-        CreateProductHelper helper = null;
-        SQLiteDatabase db = null;
-        
-    	helper = new CreateProductHelper(con);    
-    	db = helper.getWritableDatabase();
-    	Cursor c = null;
-    	String mapID = null;
-    	
-    	//DB‚©‚ç‚ÌlatAlongit‚ğŠi”[‚·‚é•Ï”
-    	int lat;
-    	int longit;
-    	
-        // Testƒf[ƒ^
-        List<LocationDataEntity> locList = null;
-   
-        try {
-        		
-        	//DBg—p‚Ì€”õ
-        	db = helper.getWritableDatabase();
-        		
-        	//SQL•¶‚Ì€”õ‚ÆÀs
-        	String locationSQL = "Select * from  mapList";
-        	c = db.rawQuery(locationSQL, null);
-        		
-        	while (c.moveToNext()) {				
-        	    
-                if (locList == null) {
-                    locList = new ArrayList<LocationDataEntity>();
-                }
-        	    
-                
-                LocationDataEntity locDataEntity = null;
-                locDataEntity = new LocationDataEntity();
-                
-        		//Še€–Ú‚Ìæ“¾
-        		mapID = c.getString(c.getColumnIndex("_id"));
-        		lat = c.getInt(c.getColumnIndex("lat"));
-        		longit = c.getInt(c.getColumnIndex("longit"));
-        		
-        		locDataEntity.setMapID(mapID);
-        		locDataEntity.setLat(lat);
-        		locDataEntity.setLongit(longit);
-        		locList.add(locDataEntity);
+	public List<LocationDataEntity> searchDB(Context con) {
+		CreateProductHelper helper = null;
+		SQLiteDatabase db = null;
 
-        	}
-        
-        } catch (Exception e) {
-        
-        } finally {
-        	if (c != null) {
-        		c.close();
-        	}
-        }
-        return locList;
-    }
+		helper = new CreateProductHelper(con);
+		db = helper.getWritableDatabase();
+		Cursor c = null;
+		String mapID = null;
+
+		// DBã‹ã‚‰ã®latã€longitã‚’æ ¼ç´ã™ã‚‹å¤‰æ•°
+		int lat;
+		int longit;
+
+		// Testãƒ‡ãƒ¼ã‚¿
+		List<LocationDataEntity> locList = null;
+
+		try {
+
+			// DBä½¿ç”¨ã®æº–å‚™
+			db = helper.getWritableDatabase();
+
+			// SQLæ–‡ã®æº–å‚™ã¨å®Ÿè¡Œ
+			String locationSQL = "Select * from mapList";
+			c = db.rawQuery(locationSQL, null);
+
+			while (c.moveToNext()) {
+
+				if (locList == null) {
+					locList = new ArrayList<LocationDataEntity>();
+				}
+
+				LocationDataEntity locDataEntity = null;
+				locDataEntity = new LocationDataEntity();
+
+				// å„é …ç›®ã®å–å¾—
+				mapID = c.getString(c.getColumnIndex("_id"));
+				lat = c.getInt(c.getColumnIndex("lat"));
+				longit = c.getInt(c.getColumnIndex("longit"));
+
+				locDataEntity.setMapID(mapID);
+				locDataEntity.setLat(lat);
+				locDataEntity.setLongit(longit);
+				locList.add(locDataEntity);
+
+			}
+
+		} catch (Exception e) {
+
+		} finally {
+			if (c != null) {
+				c.close();
+			}
+		}
+		return locList;
+	}
 }

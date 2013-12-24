@@ -22,7 +22,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.Window;
 
-
 public class UseMapActivity extends MapActivity {
 	private static final String APP_ID = "dj0zaiZpPTF6aDVrN2FzMHFQWCZzPWNvbnN1bWVyc2VjcmV0Jng9MTk-";
 	private MyLocationOverlay myLocation;
@@ -30,7 +29,7 @@ public class UseMapActivity extends MapActivity {
 	CreateProductHelper helper = null;
 	int lat;
 	int longit;
-	
+
 	int searchLat;
 	int searchLongit;
 	Context con = UseMapActivity.this;
@@ -39,31 +38,31 @@ public class UseMapActivity extends MapActivity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-		// ƒo[‚ğo‚·
+		// ãƒãƒ¼ã‚’å‡ºã™
 		getWindow().requestFeature(Window.FEATURE_ACTION_BAR);
 		setTheme(android.R.style.Theme_Black_NoTitleBar);
 
-		// YahooID‚Ìó‚¯“n‚µ
+		// YahooIDã®å—ã‘æ¸¡ã—
 		final MapView mapView = new MapView(this, APP_ID);
 
-		// ƒsƒ“‚ğ—§‚Ä‚éˆ—
+		// ãƒ”ãƒ³ã‚’ç«‹ã¦ã‚‹å‡¦ç†
 		GeoPoint mid = new GeoPoint(35665721, 139731006);
 		setContentView(mapView);
 		PinOverlay pinOverlay = new PinOverlay(PinOverlay.PIN_VIOLET);
 		mapView.getOverlays().add(pinOverlay);
 		pinOverlay.addPoint(mid, null);
 
-		// ƒY[ƒ€ƒRƒ“ƒgƒ[ƒ‹
+		// ã‚ºãƒ¼ãƒ ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«
 		mapView.setBuiltInZoomControls(true);
 
-		// ƒsƒ“‚ğ‚Â‚¯‚é
+		// ãƒ”ãƒ³ã‚’ã¤ã‘ã‚‹
 		mapView.setLongPress(true);
 
 		// MapController c = mapView.getMapController();
 		// c.setCenter(mid);
-		// c.setCenter(new GeoPoint(35632385, 139881695)); // ‰Šú•\¦‚Ì’n}‚ğw’è
-		// c.setZoom(3); // ‰Šú•\¦‚ÌkÚ‚ğw’è
-		// ©•ª‚ÌˆÊ’u‚Ìæ“¾
+		// c.setCenter(new GeoPoint(35632385, 139881695)); // åˆæœŸè¡¨ç¤ºã®åœ°å›³ã‚’æŒ‡å®š
+		// c.setZoom(3); // åˆæœŸè¡¨ç¤ºã®ç¸®å°ºã‚’æŒ‡å®š
+		// è‡ªåˆ†ã®ä½ç½®ã®å–å¾—
 		myLocation = new MyLocationOverlay(getApplicationContext(), mapView);
 
 		myLocation.enableMyLocation();
@@ -71,56 +70,56 @@ public class UseMapActivity extends MapActivity {
 		myLocation.runOnFirstFix(new Runnable() {
 			public void run() {
 				if (mapView.getMapController() != null) {
-					// Œ»İˆÊ’u‚ğæ“¾
+					// ç¾åœ¨ä½ç½®ã‚’å–å¾—
 					GeoPoint p = myLocation.getMyLocation();
-					// ’n}ˆÚ“®
+					// åœ°å›³ç§»å‹•
 					mapView.getMapController().animateTo(p);
 
 					lat = p.getLatitudeE6();
 					longit = p.getLongitudeE6();
 					RegistLocationDao regLocationDao = new RegistLocationDao();
-					regLocationDao.registDB(lat,longit,con);
+					regLocationDao.registDB(lat, longit, con);
 				}
 			}
 		});
 
 		mapView.getOverlays().add(myLocation);
 
-		// ’n}‚Ìí—Ş•ÏX
+		// åœ°å›³ã®ç¨®é¡å¤‰æ›´
 		List<String> style = new ArrayList<String>();
 		style.add("off:landmark");
 		style.add("on:store");
 		style.add("off:line_name");
 		mapView.setMapType(mapView.MapTypeStyle, "base:standard", style);
 
-		// ƒ|ƒbƒvƒAƒbƒv‚Ìˆ—
+		// ãƒãƒƒãƒ—ã‚¢ãƒƒãƒ—ã®å‡¦ç†
 		PopupOverlay popupOverlay = new PopupOverlay() {
 			@Override
 			public void onTap(OverlayItem item) {
-				// ƒ|ƒbƒvƒAƒbƒv‚ğƒ^ƒbƒ`‚µ‚½Û‚Ìˆ—
+				// ãƒãƒƒãƒ—ã‚¢ãƒƒãƒ—ã‚’ã‚¿ãƒƒãƒã—ãŸéš›ã®å‡¦ç†
 			}
 		};
 		mapView.getOverlays().add(popupOverlay);
 		pinOverlay.setOnFocusChangeListener(popupOverlay);
-		pinOverlay.addPoint(mid, "Îu…Y", "s‚«‚Â‚¯‚Ì‹ğ‰®");
+		pinOverlay.addPoint(mid, "çŸ³å¿—æ°´ç”£", "è¡Œãã¤ã‘ã®å±…é…’å±‹");
 	}
 
-	// MapActivity.isRouteDisplayed ‚ğƒI[ƒo[ƒ‰ƒCƒh‚·‚é
+	// MapActivity.isRouteDisplayed ã‚’ã‚ªãƒ¼ãƒãƒ¼ãƒ©ã‚¤ãƒ‰ã™ã‚‹
 	@Override
 	protected boolean isRouteDisplayed() {
 		return false;
 	}
 
-	// ƒƒjƒ…[€–Ú‚Ìì¬
+	// ãƒ¡ãƒ‹ãƒ¥ãƒ¼é …ç›®ã®ä½œæˆ
 	// @Override
 	// public boolean onCreateOptionsMenu(Menu menu) {
-	// ƒƒjƒ…[‚Ì—v‘f‚ğ’Ç‰Á
-	// menu.add("ˆÊ’u‚ğ‹L˜^‚·‚é");
-	// ƒƒjƒ…[‚Ì—v‘f‚ğ’Ç‰Á‚µ‚Äæ“¾
+	// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®è¦ç´ ã‚’è¿½åŠ 
+	// menu.add("ä½ç½®ã‚’è¨˜éŒ²ã™ã‚‹");
+	// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®è¦ç´ ã‚’è¿½åŠ ã—ã¦å–å¾—
 	// MenuItem actionItem = menu.add("Action Button");
-	// SHOW_AS_ACTION_IF_ROOM:—]—T‚ª‚ ‚ê‚Î•\¦
+	// SHOW_AS_ACTION_IF_ROOM:ä½™è£•ãŒã‚ã‚Œã°è¡¨ç¤º
 	// actionItem.setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
-	// ƒAƒCƒRƒ“‚ğİ’è
+	// ã‚¢ã‚¤ã‚³ãƒ³ã‚’è¨­å®š
 	// actionItem.setIcon(android.R.drawable.ic_menu_share);
 	// return true;
 	// }
@@ -128,7 +127,7 @@ public class UseMapActivity extends MapActivity {
 	// @Override
 	// public boolean onOptionsItemSelected(MenuItem item) {
 	// final EditText editView = new EditText(UseMapActivity.this);
-	// new AlertDialog.Builder(UseMapActivity.this).setTitle("ƒeƒLƒXƒg“ü—Íƒ_ƒCƒAƒƒO")
+	// new AlertDialog.Builder(UseMapActivity.this).setTitle("ãƒ†ã‚­ã‚¹ãƒˆå…¥åŠ›ãƒ€ã‚¤ã‚¢ãƒ­ã‚°")
 	// .setView(editView);
 	// return true;
 	// }

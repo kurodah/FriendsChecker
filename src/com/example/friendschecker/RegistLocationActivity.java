@@ -11,47 +11,46 @@ import android.widget.EditText;
 
 import com.example.dao.RegistLocationDao;
 
-public class RegistLocationActivity extends Activity{
-	
-    //SQLiteDatabase‚Ì’è‹`        
-	CreateProductHelper helper = null;    
-	SQLiteDatabase db = null;       
-	
-	
+public class RegistLocationActivity extends Activity {
+
+	// SQLiteDatabaseã®å®šç¾©
+	CreateProductHelper helper = null;
+	SQLiteDatabase db = null;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.regist_location);	
-		
-		// ƒ{ƒ^ƒ“‚Ìw’è                
+		setContentView(R.layout.regist_location);
+
+		// ãƒœã‚¿ãƒ³ã®æŒ‡å®š
 		Button registButton = (Button) findViewById(R.id.register);
-		
-		registLocationClickListener regLocationClickListerner = new registLocationClickListener();                
-        registButton.setOnClickListener(regLocationClickListerner);
-        
-        // DBì¬   
-        helper = new CreateProductHelper(RegistLocationActivity.this);    
+
+		registLocationClickListener regLocationClickListerner = new registLocationClickListener();
+		registButton.setOnClickListener(regLocationClickListerner);
+
+		// DBä½œæˆ
+		helper = new CreateProductHelper(RegistLocationActivity.this);
 	}
-	
-    class registLocationClickListener implements OnClickListener {                
-    	public void onClick(View v) {
-    	    /**
-    	     * ƒeƒLƒXƒgƒ{ƒbƒNƒX‚©‚çŒo“xAˆÜ“x‚ğæ“¾
-    	     */
-    	    EditText latText = (EditText) findViewById(R.id.lat_text);
-	    	EditText longitText = (EditText) findViewById(R.id.longit_text);
-	    	
-	    	/**
-	    	 * DB‚ÉÚ‘±‚µAŒo“xEˆÜ“x‚Ì“o˜^‚ğs‚¤B
-	    	 */
-	    	RegistLocationDao regLocationDao = new RegistLocationDao();
-	    	
-	    	//ˆÜ“xEŒo“x‚Ì’l‚ğƒeƒLƒXƒg¨String¨Int‚É•ÏŠ·
-	    	int lat = Integer.parseInt(latText.getText().toString());
-	    	int longit = Integer.parseInt(longitText.getText().toString());
-	    	Context context = RegistLocationActivity.this;
-	    	regLocationDao.registDB(lat, longit,context);
-	    	
-    	}
-    }
+
+	class registLocationClickListener implements OnClickListener {
+		public void onClick(View v) {
+			/**
+			 * ãƒ†ã‚­ã‚¹ãƒˆãƒœãƒƒã‚¯ã‚¹ã‹ã‚‰çµŒåº¦ã€ç·¯åº¦ã‚’å–å¾—
+			 */
+			EditText latText = (EditText) findViewById(R.id.lat_text);
+			EditText longitText = (EditText) findViewById(R.id.longit_text);
+
+			/**
+			 * DBã«æ¥ç¶šã—ã€çµŒåº¦ãƒ»ç·¯åº¦ã®ç™»éŒ²ã‚’è¡Œã†ã€‚
+			 */
+			RegistLocationDao regLocationDao = new RegistLocationDao();
+
+			// ç·¯åº¦ãƒ»çµŒåº¦ã®å€¤ã‚’ãƒ†ã‚­ã‚¹ãƒˆâ†’Stringâ†’Intã«å¤‰æ›
+			int lat = Integer.parseInt(latText.getText().toString());
+			int longit = Integer.parseInt(longitText.getText().toString());
+			Context context = RegistLocationActivity.this;
+			regLocationDao.registDB(lat, longit, context);
+
+		}
+	}
 }
